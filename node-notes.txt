@@ -1,18 +1,57 @@
 const fs = require('fs');
-
+https://www.npmjs.com/package/file-system
 fs.writeFileSync('notes.txt', 'My name is Anthony.')
 fs.appendFileSync('notes.txt', ' I am a computer science major.')
 
 function getNotes(){
     return "Get notes ...";
 };
-
 module.exports = getNotes
 
 const getNotes = require('./notes.js');
 notes = getNotes();
 console.log(notes);
-
-
 const chalk = require('chalk');
 console.log(chalk.green("hello"));
+
+
+//Command Line argv and yargs
+https://www.npmjs.com/package/yargs
+const yargs = require('yargs')
+console.log(process.argv[2]);
+yargs.command({
+    command: 'add',
+    describe: 'adding title and body',
+    builder: {
+        title: {
+            describe: "Note Title",
+            demandOption:true,
+            type:"string"
+        },
+        body: {
+            describe: "Note Body",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function(argv){
+        console.log('Title: ' + argv.title)
+        console.log('Body: ' + argv.body)
+    }
+})
+yargs.parse()
+>> node app.js add --title="Buy" --body="Note body here"
+
+
+
+//JSON Files
+{"name":"Gunther","planet":"Earth","age":54}
+const fs = require('fs');
+
+const dataBuffer = fs.readFileSync('1-json.json');
+const dataJSON = dataBuffer.toString();
+const data = JSON.parse(dataJSON);
+data.name = "Anthony"
+const JSONData = JSON.stringify(data)
+fs.writeFileSync('1-json.json', JSONData)
+{"name":"Anthony","planet":"Earth","age":54}
