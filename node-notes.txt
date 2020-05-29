@@ -7,8 +7,9 @@ function getNotes(){
     return "Get notes ...";
 };
 module.exports = getNotes
-
 const getNotes = require('./notes.js');
+const validator = require('validator')
+console.log(validator.isURL('https://www.google.com/'))
 notes = getNotes();
 console.log(notes);
 const chalk = require('chalk');
