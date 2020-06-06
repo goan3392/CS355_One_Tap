@@ -56,3 +56,26 @@ data.name = "Anthony"
 const JSONData = JSON.stringify(data)
 fs.writeFileSync('1-json.json', JSONData)
 {"name":"Anthony","planet":"Earth","age":54}
+
+
+//Arrow and Function
+const tasks = {
+    tasks: [{
+        text: 'Grocery shopping',
+        completed: true
+    },{
+        text: 'Clean yard',
+        completed: false
+    }, {
+        text: 'Film course',
+        completed: false
+    }],
+    getTasksToDo(){
+        this.tasks.forEach((task) => {
+            if(task.completed === false){
+                console.log(task.text)
+            }
+        })
+    }
+}
+console.log(tasks.getTasksToDo())
