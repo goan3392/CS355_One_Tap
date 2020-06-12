@@ -79,3 +79,11 @@ const tasks = {
     }
 }
 console.log(tasks.getTasksToDo())
+
+
+//Requests
+const mapbox = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1IjoiYW50aG9ueWdvbmc5IiwiYSI6ImNrYmJmczN5ZjAwdjYycnF2Zmo0NDhocGUifQ.W1ryFzBbLuVbnD6MdinoCg&limit=1'
+
+request({url:mapbox, json:true}, (error, response) =>{
+    console.log('long = ' + response.body.features[0].center[0] + " lat= " + response.body.features[0].center[1])
+})
