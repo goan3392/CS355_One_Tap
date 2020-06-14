@@ -135,3 +135,24 @@ geocode('Boston', (error, data) => {
     console.log('Error', error)
     console.log('Data', data)
 })
+
+
+//Express Server
+const express = require('express')
+const app = express()
+
+app.get('', (req, res) =>{
+    res.send("<h1>Home Page!</h1>")
+})
+
+app.get('/weather', (req, res) =>{
+    res.send([{
+        weather:"raining"
+    }, {
+        weather:"sunny"
+    }])
+})
+
+app.listen(3000, () =>{
+    console.log("Server is live on port 3000!")
+})
