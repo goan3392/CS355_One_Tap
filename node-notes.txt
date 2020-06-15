@@ -1,3 +1,4 @@
+//Using Files in Node
 const fs = require('fs');
 https://www.npmjs.com/package/file-system
 fs.writeFileSync('notes.txt', 'My name is Anthony.')
@@ -90,11 +91,11 @@ request({url:mapbox, json:true}, (error, response) =>{
     }else if(response.body.features.length == 0){
         console.log("Invalid parameters")
     } else {
-        console.log('long = ' + response.body.features[0].center[0] + " lat= " + response.body.features[0].center[1])
+        console.log('longitude = ' + response.body.features[0].center[0] + " latitude= " + response.body.features[0].center[1])
     }
 })
 
-//
+// Callback Functions - A function within a function
 // Goal: Mess around with the callback pattern
 //
 // 1. Define an add function that accepts the correct arguments
@@ -157,12 +158,26 @@ app.listen(3000, () =>{
     console.log("Server is live on port 3000!")
 })
 
-
 //Static Directory using path module
+//Lets use load pages without using app.get in our 'public' folder
 const publicDirectoryPath = path.join(__dirname, '../public')
 app.use(express.static(publicDirectoryPath))
 
-app.listen(3000, () =>{
-    console.log("Server is live on port 3000!")
+//Dynamic Pages with hbs(handlebars) module
+https://www.npmjs.com/package/hbs
+app.set('view engine', 'hbs')
+app.get('', (req, res) =>{
+    res.render('index', {
+        title: "Weather App",
+        name: "Anthony"
+    })
 })
+<h1>{{title}}</h1>
+<p>Created by {{name}}</p>    
 
+app.get('/help', (req, res) =>{
+    res.render('help', {
+        contact: 'anthony@gmail.com'
+    })
+})
+<h1>My email is {{email}}</h1>
