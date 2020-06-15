@@ -181,3 +181,13 @@ app.get('/help', (req, res) =>{
     })
 })
 <h1>My email is {{email}}</h1>
+
+//If you wanted to change to views folder location for hbs files
+const viewPath = path.join(__dirname, 'templates/views')
+app.set('views', viewPath)
+
+//Partials for partial rendering (header,footer)
+const hbs = require('hbs')
+const partialsPath = path.join(__dirname, 'templates/partials')
+hbs.registerPartials(partialsPath)
+{{>header}}
